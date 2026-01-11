@@ -1,9 +1,5 @@
 # Statistical Analysis Summary
 
-This document summarizes the results from four Jupyter notebooks analyzing various statistical concepts and their applications.
-
----
-
 ## 1. Fat Tail Analysis (`fat_tail.ipynb`)
 
 ### Objective
@@ -28,16 +24,14 @@ Analyze the fat-tailed nature of SPX (S&P 500) returns and compare different dis
 
 #### Distribution Fitting Results
 
-| Distribution | Parameters | AIC | BIC | KS Statistic | KS p-value |
-|--------------|------------|-----|-----|--------------|------------|
-| **Student-t** | df = 2.65 | -41,005.64 | -40,985.28 | 0.0176 | 0.0348 |
-| **Generalized Normal** | β = 0.87 | -41,003.85 | -40,983.49 | 0.0179 | 0.0297 |
-| **Normal** | μ = 0.000314, σ = 0.012193 | -39,102.22 | -39,088.64 | 0.0923 | 0.0000 |
+| Distribution | Parameters | AIC | KS Statistic | KS p-value |
+|--------------|------------|-----|--------------|------------|
+| **Student-t** | df = 2.65 | -41,005.64 | 0.0176 | 0.0348 |
+| **Generalized Normal** | β = 0.87 | -41,003.85 | 0.0179 | 0.0297 |
+| **Normal** | μ = 0.000314, σ = 0.012193 | -39,102.22 || 0.0923 | 0.0000 |
 
 **Conclusion**: 
 - **Student-t distribution** (df = 2.65) provides the best overall fit with the lowest AIC
-- **Generalized Normal** (β = 0.87) is a close second
-- **Normal distribution** fails to adequately model extreme losses (KS p-value = 0.0000)
 
 ### Visualizations
 
@@ -112,10 +106,7 @@ Demonstrate how multiple testing increases the probability of observing spurious
 
 ### Key Insight
 
-When testing multiple strategies simultaneously, the probability of observing spurious high Sharpe ratios increases dramatically, even when all strategies are pure noise (null hypothesis is true). This demonstrates the **multiple testing problem** in quantitative finance:
-
-- Testing a single strategy: Very low probability of false positives
-- Testing 50 strategies: Significantly higher probability of observing at least one spurious high Sharpe ratio
+When testing multiple strategies simultaneously, the probability of observing spurious high Sharpe ratios increases dramatically, even when all strategies are pure noise (null hypothesis is true).
 
 **Conclusion**: Multiple testing significantly increases the probability of false discoveries. Proper multiple testing corrections (e.g., Bonferroni, FDR) are essential when evaluating multiple strategies.
 
@@ -179,24 +170,3 @@ Perform PCA on synthetic implied volatility (IV) surfaces to identify the main f
    - **PC3**: Likely captures curvature (smile shape)
 
 ![PCA Loadings](plots/pca_loadings.png)
-
----
-
-## Overall Conclusions
-
-1. **Fat Tails**: Financial returns exhibit fat tails that cannot be adequately modeled by normal distributions. Student-t or Generalized Normal distributions provide better risk estimates.
-
-2. **Robust Estimation**: When outliers are present, robust loss functions (Huber, MAE) provide better estimates for typical observations, even if overall MSE is slightly higher.
-
-3. **Multiple Testing**: The multiple testing problem is critical in quantitative finance. Testing many strategies simultaneously increases false discovery rates, requiring proper statistical corrections.
-
-4. **Dimensionality Reduction**: PCA reveals that complex structures (like IV surfaces) can often be represented by a small number of factors, enabling both relative-value and time-series trading strategies.
-
----
-
-## Technical Notes
-
-- All analyses use Python with libraries: `numpy`, `pandas`, `matplotlib`, `scipy`, `sklearn`, `yfinance`
-- SPX data spans from 2000-01-01 to present
-- Random seeds were set for reproducibility where applicable
-- All statistical tests and model fits follow standard practices in quantitative finance
