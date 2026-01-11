@@ -25,6 +25,10 @@ This repository contains Jupyter notebooks demonstrating important statistical c
 
 **Data**: S&P 500 (^GSPC) daily returns from 2000-01-01
 
+**Visualizations**:
+- **Distribution Fits**: Three histograms with overlaid PDFs comparing Normal, Student-t, and Generalized Normal distributions against empirical SPX returns. The Student-t distribution clearly captures the fat tails better than the Normal distribution.
+- **Q-Q Plots**: Three quantile-quantile plots showing how well each distribution fits the data. The Student-t Q-Q plot shows the best alignment with the diagonal reference line, confirming its superior fit.
+
 ---
 
 ### 2. Loss Function Comparison (`loss_function.ipynb`)
@@ -44,6 +48,10 @@ This repository contains Jupyter notebooks demonstrating important statistical c
 
 **Data**: Synthetic linear model with asymmetric jumps (90% small noise, 10% large jumps)
 
+**Visualizations**:
+- **Scatter Plot**: Shows the linear relationship between x and y, with small noise points (90%) in blue and large asymmetric jumps (10%) in red. The true regression line (y = 1.5x) is overlaid, demonstrating how outliers can distort OLS estimates.
+- **Noise Distribution Histogram**: Displays the bimodal distribution of errors, with a narrow peak around zero (small noise) and a broader distribution centered at -1 (asymmetric jumps), illustrating the data generation process.
+
 ---
 
 ### 3. Multiple Testing Problem (`multiple_test.ipynb`)
@@ -62,6 +70,9 @@ This repository contains Jupyter notebooks demonstrating important statistical c
 - Demonstrates how multiple testing increases the probability of false discoveries
 
 **Data**: Simulated returns under the null hypothesis (pure noise)
+
+**Visualizations**:
+- **Sharpe Ratio Distribution Comparison**: A histogram comparing the distribution of maximum Sharpe ratios when testing 1 strategy versus 50 strategies simultaneously. The plot includes a vertical red dashed line at Sharpe = 1.8, showing how multiple testing shifts the distribution rightward and dramatically increases the probability of observing spurious high Sharpe ratios by chance.
 
 ---
 
@@ -86,6 +97,11 @@ This repository contains Jupyter notebooks demonstrating important statistical c
 - Time-series strategies (mean reversion, regime shifts)
 
 **Data**: Synthetic implied volatility surface matrix (100 assets × 50 strikes)
+
+**Visualizations**:
+- **IV Surface Examples**: A plot showing five sample implied volatility surfaces across different assets, displaying the typical volatility smile/skew pattern as a function of log-moneyness (k = log(K/F)).
+- **Scree Plot**: A bar chart with cumulative variance line showing the explained variance ratio for each principal component. The first three components are clearly dominant, explaining 94% of total variance.
+- **Principal Component Loadings**: A line plot displaying the first three principal component loadings as functions of log-moneyness. PC1 (level) is relatively flat, PC2 (skew) shows a linear pattern, and PC3 (curvature) exhibits a quadratic shape, corresponding to the classic volatility surface factors.
 
 ---
 
