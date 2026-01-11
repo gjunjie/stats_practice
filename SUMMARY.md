@@ -1,4 +1,4 @@
-# Statistical Analysis Summary
+# Summary
 
 ## 1. Fat Tail Analysis (`fat_tail.ipynb`)
 
@@ -19,6 +19,7 @@ Analyze the fat-tailed nature of SPX (S&P 500) returns and compare different dis
 | Student-t | ES 99% | -5.78% |
 
 **Key Insight**: The Normal distribution significantly underestimates tail risk:
+
 - **VaR gap**: Normal underestimates by 0.62% compared to empirical
 - **ES gap**: Normal underestimates by 1.70% compared to empirical
 
@@ -31,11 +32,14 @@ Analyze the fat-tailed nature of SPX (S&P 500) returns and compare different dis
 | **Normal** | μ = 0.000314, σ = 0.012193 | -39,102.22 || 0.0923 | 0.0000 |
 
 **Conclusion**: 
+
 - **Student-t distribution** (df = 2.65) provides the best overall fit with the lowest AIC
+- **Generalized Normal** (β = 0.87) is a close second
+- **Normal distribution** fails to adequately model extreme losses (KS p-value = 0.0000)
 
 ### Visualizations
 
-1. **Histogram with Fitted PDFs**: Three subplots showing empirical return distribution overlaid with fitted PDFs for Normal, Student-t, and Generalized Normal distributions. The Student-t and Generalized Normal distributions better capture the fat tails of the empirical data.
+1. **Histogram with Fitted PDFs**: The Student-t and Generalized Normal distributions better capture the fat tails of the empirical data.
 
 ![Fat Tail Histograms](plots/fat_tail_histograms.png)
 
@@ -58,11 +62,11 @@ Compare the performance of different loss functions (MSE/OLS, Huber, MAE) on dat
 
 ### Model Performance
 
-| Model | β̂ (coefficient) | Intercept | MSE (all data) | MAE (all data) | MSE (middle only) |
-|-------|------------------|-----------|----------------|----------------|-------------------|
-| **OLS (MSE)** | 1.5082 | -0.0901 | 0.2146 | 0.2663 | 0.0485 |
-| **Huber Loss** | 1.5016 | -0.0170 | 0.2199 | 0.2570 | 0.0403 |
-| **MAE** | 1.5016 | -0.0170 | 0.2199 | 0.2570 | 0.0403 |
+| Model | β̂ (coefficient) | Intercept | MSE (all data) | MSE (normal only) |
+|-------|------------------|-----------|----------------|-------------------|
+| **OLS (MSE)** | 1.5082 | -0.0901 | 0.2146 | 0.0485 |
+| **Huber Loss** | 1.5016 | -0.0170 | 0.2199 | 0.0403 |
+| **MAE** | 1.5016 | -0.0170 | 0.2199 | 0.0403 |
 
 ### Key Insights
 
@@ -70,9 +74,9 @@ Compare the performance of different loss functions (MSE/OLS, Huber, MAE) on dat
 
 2. **Normal Day Performance**: Huber and MAE losses achieve **lower MSE on typical data points** (0.0403 vs 0.0485), demonstrating better robustness to outliers.
 
-3. **Coefficient Estimation**: 
-   - OLS coefficient (1.5082) is slightly biased away from the true value (1.5) due to outliers
-   - Huber and MAE recover the true coefficient more accurately (1.5016)
+3. **Coefficient Estimation**:
+    - OLS coefficient (1.5082) is slightly biased away from the true value (1.5) due to outliers
+    - Huber and MAE recover the true coefficient more accurately (1.5016)
 
 **Conclusion**: Robust loss functions (Huber, MAE) are preferred when outliers are present but accurate predictions for typical observations are more important than overall MSE minimization.
 
@@ -114,7 +118,7 @@ When testing multiple strategies simultaneously, the probability of observing sp
 
 **Histogram Comparison**: Overlapping histograms showing the distribution of maximum Sharpe ratios for 1 test vs 50 tests. A vertical red dashed line marks Sharpe = 1.8. The distribution for 50 tests shows a longer right tail, indicating higher probability of extreme values.
 
-![Multiple Testing Histogram](plots/multiple_testing.png)
+<img src="plots/multiple_testing.png" alt="Multiple Testing Histogram" class="small-plot">
 
 ---
 
@@ -158,15 +162,15 @@ Perform PCA on synthetic implied volatility (IV) surfaces to identify the main f
 
 1. **Sample IV Surfaces**: Plot showing five sample IV surfaces across different assets, demonstrating the variation in volatility structure (level, skew, curvature).
 
-![PCA IV Surfaces](plots/pca_iv_surfaces.png)
+<img src="plots/pca_iv_surfaces.png" alt="PCA IV Surfaces" class="small-plot">
 
 2. **Scree Plot**: Bar chart showing individual explained variance for the first 5 PCs, with a cumulative line overlay. Clearly shows that PC1 and PC2 dominate.
 
-![PCA Scree Plot](plots/pca_scree.png)
+<img src="plots/pca_scree.png" alt="PCA Scree Plot" class="small-plot">
 
 3. **Principal Component Loadings**: Plot of the first 3 PC loadings as functions of log-moneyness (k). These show:
    - **PC1**: Likely captures the overall level of volatility
    - **PC2**: Likely captures skew (asymmetric structure)
    - **PC3**: Likely captures curvature (smile shape)
 
-![PCA Loadings](plots/pca_loadings.png)
+<img src="plots/pca_loadings.png" alt="PCA Loadings" class="small-plot">
