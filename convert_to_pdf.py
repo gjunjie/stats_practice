@@ -15,7 +15,7 @@ def install_requirements():
             print(f"Installing {package}...")
             subprocess.check_call([sys.executable, '-m', 'pip', 'install', package])
 
-def convert_md_to_pdf(md_file='SUMMARY.md', pdf_file='SUMMARY.pdf'):
+def convert_md_to_pdf(md_file='SUMMARY.md', pdf_file='Followup_Notes.pdf'):
     """Convert markdown file to PDF"""
     try:
         import markdown

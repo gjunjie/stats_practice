@@ -1,5 +1,7 @@
 # Summary
 
+Detail can be found at https://github.com/gjunjie/stats_practice 
+
 ## 1. Fat Tail Analysis (`fat_tail.ipynb`)
 
 ### Objective
