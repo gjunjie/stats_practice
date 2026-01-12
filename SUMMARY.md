@@ -29,12 +29,11 @@ Analyze the fat-tailed nature of SPX (S&P 500) returns and compare different dis
 |--------------|------------|-----|--------------|------------|
 | **Student-t** | df = 2.65 | -41,005.64 | 0.0176 | 0.0348 |
 | **Generalized Normal** | β = 0.87 | -41,003.85 | 0.0179 | 0.0297 |
-| **Normal** | μ = 0.000314, σ = 0.012193 | -39,102.22 || 0.0923 | 0.0000 |
+| **Normal** | μ = 0.000314, σ = 0.012193 | -39,102.22 | 0.0923 | 0.0000 |
 
 **Conclusion**: 
 
 - **Student-t distribution** (df = 2.65) provides the best overall fit with the lowest AIC
-- **Generalized Normal** (β = 0.87) is a close second
 - **Normal distribution** fails to adequately model extreme losses (KS p-value = 0.0000)
 
 ### Visualizations
@@ -60,6 +59,8 @@ Compare the performance of different loss functions (MSE/OLS, Huber, MAE) on dat
 - **10% of the time**: Large asymmetric jump N(-1, 1²)
 - **Sample size**: 5,000 observations
 
+![Loss Function Data Visualization](plots/loss_function_data.png)
+
 ### Model Performance
 
 | Model | β̂ (coefficient) | Intercept | MSE (all data) | MSE (normal only) |
@@ -79,14 +80,6 @@ Compare the performance of different loss functions (MSE/OLS, Huber, MAE) on dat
     - Huber and MAE recover the true coefficient more accurately (1.5016)
 
 **Conclusion**: Robust loss functions (Huber, MAE) are preferred when outliers are present but accurate predictions for typical observations are more important than overall MSE minimization.
-
-### Visualizations
-
-1. **Scatter Plot**: Shows the relationship between x and y, with small noise points (90%) in blue and large jumps (10%) in red. The true line y = 1.5x is overlaid.
-
-2. **Noise Distribution Histogram**: Displays the distribution of ε, showing the bimodal nature with small noise (σ = 0.2) and asymmetric jumps (μ = -1, σ = 1).
-
-![Loss Function Data Visualization](plots/loss_function_data.png)
 
 ---
 
@@ -160,17 +153,24 @@ Perform PCA on synthetic implied volatility (IV) surfaces to identify the main f
 
 ### Visualizations
 
-1. **Sample IV Surfaces**: Plot showing five sample IV surfaces across different assets, demonstrating the variation in volatility structure (level, skew, curvature).
+#### 1. Sample IV Surfaces:
+
+Plot showing five sample IV surfaces across different assets, demonstrating the variation in volatility structure.
 
 <img src="plots/pca_iv_surfaces.png" alt="PCA IV Surfaces" class="small-plot">
 
-2. **Scree Plot**: Bar chart showing individual explained variance for the first 5 PCs, with a cumulative line overlay. Clearly shows that PC1 and PC2 dominate.
+#### 2. Scree Plot:
+
+Bar chart showing individual explained variance for the first 5 PCs, with a cumulative line overlay.
 
 <img src="plots/pca_scree.png" alt="PCA Scree Plot" class="small-plot">
 
-3. **Principal Component Loadings**: Plot of the first 3 PC loadings as functions of log-moneyness (k). These show:
-   - **PC1**: Likely captures the overall level of volatility
-   - **PC2**: Likely captures skew (asymmetric structure)
-   - **PC3**: Likely captures curvature (smile shape)
+#### 3. Principal Component Loadings:
+
+Plot of the first 3 PC loadings as functions of log-moneyness (k).
+
+- **PC1**: Likely captures the overall level
+- **PC2**: Likely captures skew (asymmetric structure)
+- **PC3**: Likely captures curvature (smile shape)
 
 <img src="plots/pca_loadings.png" alt="PCA Loadings" class="small-plot">

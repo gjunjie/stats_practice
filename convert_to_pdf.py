@@ -60,7 +60,7 @@ def convert_md_to_pdf(md_file='SUMMARY.md', pdf_file='SUMMARY.pdf'):
             border-bottom: 3px solid #3498db;
             padding-bottom: 5px;
             margin-top: 15px;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
         }
         h2 {
             font-size: 13pt;
@@ -68,18 +68,24 @@ def convert_md_to_pdf(md_file='SUMMARY.md', pdf_file='SUMMARY.pdf'):
             border-bottom: 2px solid #ecf0f1;
             padding-bottom: 3px;
             margin-top: 15px;
-            margin-bottom: 8px;
+            margin-bottom: 3px;
         }
         h3 {
             font-size: 11pt;
             color: #555;
             margin-top: 12px;
-            margin-bottom: 6px;
+            margin-bottom: 2px;
+        }
+        h4 {
+            font-size: 10pt;
+            color: #555;
+            margin-top: 8px;
+            margin-bottom: 2px;
         }
         table {
             border-collapse: collapse;
-            width: 100%;
-            margin: 6px 0;
+            width: 90%;
+            margin: 3px auto;
             font-size: 8pt;
             border: 1px solid #000;
         }
@@ -108,13 +114,13 @@ def convert_md_to_pdf(md_file='SUMMARY.md', pdf_file='SUMMARY.pdf'):
             max-width: 100%;
             height: auto;
             display: block;
-            margin: 10px auto;
+            margin: 4px auto;
         }
         img.small-plot {
             max-width: 60%;
             height: auto;
             display: block;
-            margin: 8px auto;
+            margin: 3px auto;
         }
         code {
             background-color: #f4f4f4;
@@ -139,7 +145,7 @@ def convert_md_to_pdf(md_file='SUMMARY.md', pdf_file='SUMMARY.pdf'):
         }
         p {
             font-size: 9pt;
-            margin: 4px 0;
+            margin: 2px 0;
             line-height: 1.2;
         }
         li {
